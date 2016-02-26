@@ -23,7 +23,7 @@ namespace OtherQuestions.Questions.Q1
                 {
                     if (n2.Children[s[len - 1 - i] - 'a'] == null)
                     {
-                        n2.Children[s[len - 1 - i] - 'a'] = new SegmentNode();
+                        n2.Children[s[len - 1 - i] - 'a'] = new SegmentNode() { Val = s[len - 1 - i] };
                     }
 
                     n2 = n2.Children[s[len - 1 - i] - 'a'];
@@ -41,15 +41,26 @@ namespace OtherQuestions.Questions.Q1
 
                 SegmentNode n = suffixNode;
                 bool found = true;
-                foreach (char c in s)
+
+                int currentStringLen = s.Length;
+
+                for (int k = 0; k < currentStringLen; k++)
                 {
+                    char c = s[k];
                     if (n.Children[c - 'a'] == null)
                     {
                         found = false;
                         break;
                     }
-
+                    
                     n = n.Children[c - 'a'];
+
+                    if (n.IsWord && j != n.Index && !visited[j, n.Index] && !visited[n.Index,j] && isPalindrome(s.Substring(k + 1)))
+                    {
+                        visited[j, n.Index] = true;
+
+                        result.Add(dicts[j] + "," + dicts[n.Index]);
+                    }
                 }
 
                 if (!found)
