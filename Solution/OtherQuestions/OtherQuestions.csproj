@@ -50,6 +50,8 @@
     <Compile Include="Questions\Q1\TestCases.cs" />
     <Compile Include="Questions\Q2\Question.cs" />
     <Compile Include="Questions\Q2\Solution.cs" />
+    <Compile Include="Questions\Q3\Question.cs" />
+    <Compile Include="Questions\Q3\Solution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
